@@ -6,16 +6,16 @@
   <title>Ysha | Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=DM+Serif+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-color: #fffbf0;
-      --card-bg: #ffffff;
-      --text-main: #4a4a4a;
-      --accent-hardware: #ff8fab;
-      --accent-software: #a2d2ff;
-      --muted: #6d6d6d;
-      --shadow: 0 18px 60px rgba(0, 0, 0, 0.08);
+      --bg-color: #FFF7F2;
+      --card-bg: #FFFFFF;
+      --text-main: #2A2A2A;
+      --accent-hardware: #FFB4A2;
+      --accent-software: #B8C0FF;
+      --muted: #7A6F6A;
+      --shadow: 0 18px 60px rgba(255, 140, 100, 0.06);
     }
 
     * {
@@ -24,11 +24,23 @@
 
     body {
       margin: 0;
-      font-family: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+      font-family: "Open Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
       background: var(--bg-color);
       color: var(--text-main);
       line-height: 1.6;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
+
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    /* ========== Hero Section ========== */
 
     .cover {
       min-height: 100vh;
@@ -36,34 +48,105 @@
       align-items: center;
       justify-content: center;
       padding: 32px 20px;
+      background-color: var(--bg-color);
+      background-image: radial-gradient(circle at 1px 1px, rgba(255, 180, 162, 0.20) 2px, transparent 0);
+      background-size: 20px 20px;
     }
 
     .cover-inner {
       width: min(1100px, 100%);
-      background: var(--card-bg);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      padding: 28px;
-      display: grid;
-      gap: 20px;
-      border: 1px solid rgba(0, 0, 0, 0.02);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .hero-figure {
+      position: relative;
+      flex: 1 1 50%;
+      order: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes scale-settle {
+      from {
+        transform: scale(1.02);
+      }
+      to {
+        transform: scale(1);
+      }
     }
 
     .hero-image {
+      position: relative;
+      align-self: center;
       width: 100%;
-      height: clamp(260px, 50vh, 420px);
-      border-radius: 24px;
-      background: #454545;
-      display: grid;
-      place-items: center;
-      color: #e8e8e8;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+      max-width: 400px;
+      aspect-ratio: 1 / 1;
+      max-height: 400px;
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      background: #ffedcc;
+      overflow: hidden;
+      display: block;
+      box-shadow: 0 10px 40px rgba(255, 140, 100, 0.18);
+      animation: blob-morph 16s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    .hero-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Satellite Blobs */
+
+    .satellite {
+      position: absolute;
+      display: block;
+      border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+      filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.08));
+      animation: floaty 12s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .sat-1 {
+      width: 120px;
+      height: 120px;
+      background: #ffe8d6;
+      top: -24px;
+      left: 35px;
+      z-index: 1;
+    }
+
+    .sat-2 {
+      width: 90px;
+      height: 90px;
+      background: #dfe8ff;
+      top: 60%;
+      left: -1px;
+      z-index: 3;
+      animation-delay: 0.6s;
+    }
+
+    .sat-3 {
+      width: 140px;
+      height: 140px;
+      background: #fff4b3;
+      bottom: -35px;
+      right: 20px;
+      z-index: 1;
+      animation-delay: 0.3s;
     }
 
     .hero-text {
-      text-align: center;
+      order: 2;
+      flex: 1 1 50%;
+      text-align: left;
       display: grid;
       gap: 10px;
     }
@@ -72,9 +155,9 @@
       margin: 0;
       font-size: clamp(36px, 6vw, 64px);
       letter-spacing: -0.02em;
-      font-family: "Cooper Black", "DM Serif Display", Georgia, serif;
-      font-weight: 700;
-      color: #1f1f1f;
+      font-family: "Poppins", sans-serif;
+      font-weight: 800;
+      color: #2A2A2A;
     }
 
     .subtitle {
@@ -84,11 +167,153 @@
       font-size: clamp(18px, 3vw, 24px);
     }
 
+    .marker {
+      background: linear-gradient(180deg, transparent 60%, #ffe08a 0%);
+      font-weight: 800;
+      color: #2A2A2A;
+      padding: 0 2px;
+      border-radius: 4px;
+    }
+
+    /* Status Badge */
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #f1fff5;
+      border: 1px solid #cfead8;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #2A2A2A;
+      width: fit-content;
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #2ecc71;
+    }
+
+    @keyframes status-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.6); }
+      70% { box-shadow: 0 0 0 8px rgba(46, 204, 113, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+    }
+
+    /* Skill Strip */
+
+    .skill-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .skill-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #2A2A2A;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+      transition: transform 120ms ease, box-shadow 160ms ease;
+      user-select: none;
+    }
+
+    .skill-pill:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+    }
+
+    .skill-pill.teal { background: #dff7f2; }
+    .skill-pill.orange { background: #ffe8d6; }
+    .skill-pill.blue { background: #dfe8ff; }
+    .skill-pill.purple { background: #eadcff; }
+
+    /* Animations */
+
+    @keyframes blob-morph {
+      0%   { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+      25%  { border-radius: 55% 45% 35% 65% / 58% 35% 65% 42%; }
+      50%  { border-radius: 62% 38% 42% 58% / 54% 38% 62% 46%; }
+      75%  { border-radius: 58% 42% 28% 72% / 62% 32% 68% 38%; }
+      100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+    }
+      @keyframes floaty {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+      }
+
+    @keyframes floaty {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* ========== Mobile Responsiveness ========== */
+
+    @media (max-width: 768px) {
+      .cover-inner {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+      }
+      
+      .hero-figure {
+        order: 1;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 16px;
+      }
+      
+      .hero-text {
+        order: 2;
+        text-align: center;
+        width: 100%;
+        flex-basis: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .status-badge {
+        align-self: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .skill-strip {
+        justify-content: center;
+        width: 100%;
+      }
+      
+      .hero-image {
+        margin: 0 auto;
+        max-width: 320px;
+        max-height: 320px;
+      }
+      
+      .sat-1 { width: 80px; height: 80px; }
+      .sat-2 { width: 60px; height: 60px; }
+      .sat-3 { width: 100px; height: 100px; }
+    }
+
     main {
       max-width: 1200px;
       margin: 0 auto;
       padding: 32px 20px 72px;
     }
+
+    /* ========== Projects Section ========== */
 
     .grid {
       display: grid;
@@ -136,17 +361,420 @@
       background: rgba(0, 0, 0, 0.03);
     }
 
+    .project-thumb {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 14px;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+      cursor: zoom-in;
+    }
+
+    /* Image Expand Icon */
+
+    .image-wrapper {
+      position: relative;
+      display: block;
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+
+    .expand-icon {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      backdrop-filter: blur(4px);
+    }
+
+    @media (min-width: 769px) {
+      .expand-icon {
+        opacity: 0;
+      }
+      .image-wrapper:hover .expand-icon {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .expand-icon {
+        opacity: 1;
+      }
+    }
+
+    .hardware .pill {
+      background: #fff5eb;
+      color: #d86b3f;
+    }
+
+    .software .pill {
+      background: #f0f4ff;
+      color: #3b4b8f;
+    }
+
     .hardware {
-      border-top: 6px solid var(--accent-hardware);
+      background-color: #ffffff;
+      border: 1px solid #ffc9a8;
     }
 
     .software {
-      border-top: 6px solid var(--accent-software);
+      background-color: #ffffff;
+      border: 1px solid #b8c0ff;
+    }
+
+    /* ========== Modal ========== */
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 24px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content img {
+      max-width: 90vw;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 16px;
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.35);
+      background: #fff;
+    }
+
+    .modal-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+
+    .modal-nav.prev { left: -54px; }
+    .modal-nav.next { right: -54px; }
+
+    @media (max-width: 768px) {
+      .modal-nav {
+        display: none !important;
+      }
+      
+      .modal-counter {
+        bottom: 12px;
+        display: block !important;
+      }
+      
+      .modal-close {
+        top: 8px;
+        right: 8px;
+      }
+    }
+
+    .modal-counter {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 6px 10px;
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1;
     }
 
     .highlight {
       font-weight: 700;
       color: var(--text-main);
+    }
+
+    .hero-subhead {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(16px, 2.8vw, 19px);
+    }
+
+    .hero-highlight {
+      margin: 0;
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: clamp(16px, 2.6vw, 18px);
+    }
+
+    .card.featured {
+      padding: 28px 20px;
+      box-shadow: 0 20px 70px rgba(255, 140, 100, 0.12), 
+                  0 0 0 1px rgba(255, 180, 162, 0.2);
+    }
+
+    .card.featured.stretched {
+      grid-column: span 3;
+    }
+
+    .featured-layout {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+    }
+
+    .featured-image {
+      flex: 0 0 45%;
+      border-radius: 18px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #ffe8d6 0%, #ffd6b3 100%);
+      height: 240px;
+      max-height: 240px;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+    }
+
+    .featured-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 12%;
+      display: block;
+      cursor: pointer;
+    }
+
+    .featured-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .focus-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      opacity: 0.85;
+      margin-top: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    .focus-label.featured-label {
+      color: var(--accent-hardware);
+      opacity: 1;
+    }
+
+    /* ========== Footer ========== */
+
+    .footer-bar {
+      background: #FCCFC2;
+      color: #2A2A2A;
+      padding: 26px 20px;
+      margin-top: 40px;
+      border-radius: 24px 24px 0 0;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-weight: 700;
+    }
+
+    .footer-name {
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+    }
+
+    .footer-role {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .footer-links a {
+      color: #2A2A2A;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.35);
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      background: rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .footer-links svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+      transition: all 0.3s ease;
+    }
+
+    .footer-links a.glow {
+      animation: icon-glow 1.5s ease-in-out 3;
+    }
+
+    @keyframes icon-glow {
+      0%, 100% {
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(255, 180, 162, 0.8),
+                    0 0 40px rgba(255, 180, 162, 0.5),
+                    inset 0 0 0 1px rgba(255, 180, 162, 0.3);
+        background: rgba(255, 255, 255, 0.9);
+      }
+    }
+
+    /* ========== Floating Connect Button ========== */
+
+    .connect-blob {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 70px;
+      height: 70px;
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(3px);
+      border: 1px solid rgba(255, 180, 162, 0.3);
+      cursor: pointer;
+      z-index: 998;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(255, 140, 100, 0.35),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+      animation: blob-morph 8s ease-in-out infinite, float-gentle 3s ease-in-out infinite;
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      color: #2A2A2A;
+      letter-spacing: 0.02em;
+    }
+
+    .connect-blob:hover {
+      transform: scale(1.08);
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 14px 38px rgba(255, 140, 100, 0.45),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      border-color: rgba(255, 180, 162, 0.5);
+    }
+
+    .connect-blob:active {
+      transform: scale(0.95);
+    }
+
+    .connect-blob.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+    }
+
+    @keyframes float-gentle {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @media (max-width: 768px) {
+      .connect-blob {
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        font-size: 11px;
+      }
+    }
+
+    .footer-note {
+      font-size: 12px;
+      opacity: 0.85;
     }
 
     @media (max-width: 599px) {
@@ -156,75 +784,424 @@
       .hero-image {
         height: 240px;
       }
+      .card.featured,
+      .card.featured.stretched {
+        grid-column: span 1;
+      }
+      .featured-layout {
+        flex-direction: column;
+      }
+      .featured-image {
+        flex: 0 0 auto;
+        width: 100%;
+        height: 200px;
+        max-height: 200px;
+        min-height: 200px;
+      }
+    }
+
+    /* Scroll Animations */
+
+    .hero-image,
+    .hero-text {
+      will-change: transform, opacity;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-image,
+      .hero-text {
+        will-change: auto;
+        animation: none !important;
+      }
     }
   </style>
 </head>
 <body>
   <section class="cover" aria-label="Hero">
     <div class="cover-inner">
-      <div class="hero-image" aria-hidden="true">Your photo</div>
+      <div class="hero-figure">
+        <div class="hero-image" aria-hidden="true">
+          <img class="hero-photo" src="images/ysha.jpg" alt="Your photo" loading="lazy" />
+        </div>
+        <span class="satellite sat-1"></span>
+        <span class="satellite sat-2"></span>
+        <span class="satellite sat-3"></span>
+      </div>
       <div class="hero-text">
+        <div class="status-badge"><span class="status-dot" aria-hidden="true"></span>Open to Internships</div>
         <h1>Hi! I'm Ysha</h1>
-        <p class="subtitle">4th Year Computer Engineering Student</p>
+        <p class="subtitle">4th Year <span class="marker">Computer Engineering Student</span></p>
+        <p class="hero-subhead">Curious about embedded systems, system design, and engineering projects that bridge hardware and software.</p>
+        <div class="skill-strip" aria-label="Key skills">
+          <span class="skill-pill teal">Arduino</span>
+          <span class="skill-pill orange">IoT Systems</span>
+          <span class="skill-pill blue">Prototyping</span>
+          <span class="skill-pill purple">Frontend Design</span>
+        </div>
       </div>
     </div>
   </section>
 
   <main>
     <section class="grid" aria-label="Projects and info">
-      <article class="card software" aria-labelledby="proj-software-1">
-        <h2 id="proj-software-1">Software Project — Smart Scheduler</h2>
-        <p>Built a scheduling assistant that balances course load and project milestones. Implemented calendar sync, notifications, and a scoring model that cut deadline conflicts by 35%.</p>
-        <div class="pill-row">
-          <span class="pill">TypeScript</span>
-          <span class="pill">React</span>
-          <span class="pill">Node.js</span>
+      <article class="card hardware featured stretched" aria-labelledby="proj-hardware-5">
+        <div class="featured-layout">
+          <div class="featured-image image-wrapper" aria-hidden="true">
+            <img src="images/feedback.jpg" alt="Feedback-controlled water vending machine" loading="lazy" data-images="images/feedback.jpg, images/feedback1.jpg, images/feedback2.jpg" onclick="openModal(this)">
+            <span class="expand-icon">⤢</span>
+          </div>
+          <div class="featured-body">
+            <h2 id="proj-hardware-5">Feedback-Controlled Water Vending Machine</h2>
+            <p class="focus-label featured-label">⭐ Featured · Hardware Focus</p>
+            <p>A smart dispenser that automates water flow and auto-clears unclaimed cups. Optimized user experience and reduced waste.</p>
+            <div class="pill-row">
+              <span class="pill">Arduino</span>
+              <span class="pill">Motion Sensor</span>
+              <span class="pill">Servo Motor</span>
+              <span class="pill">Water Pump</span>
+              <span class="pill">Coin Slot</span>
+            </div>
+          </div>
         </div>
       </article>
 
-      <article class="card hardware" aria-labelledby="proj-hardware-1">
-        <h2 id="proj-hardware-1">Hardware Project — Sensor Hub</h2>
-        <p>Designed a low-power sensor node with BLE telemetry and on-device filtering. Achieved 20% longer battery life via duty-cycling and efficient data packing.</p>
+      <article class="card hardware" aria-labelledby="proj-hardware-5">
+        <div class="image-wrapper">
+          <img class="project-thumb" src="images/car.jpg" alt="Bluetooth Controlled RC Car" loading="lazy" data-images="images/car.jpg, images/car1.jpg, images/car2.jpg" onclick="openModal(this)">
+          <span class="expand-icon">⤢</span>
+        </div>
+        <h2 id="proj-hardware-5">Bluetooth Controlled RC Car</h2>
+        <p class="focus-label">Hardware Focus</p>
+        <p>An RC car controlled via Bluetooth using RPI Pico microcontroller. Mobile app built with MIT App Inventor for seamless wireless communication and control.</p>
         <div class="pill-row">
-          <span class="pill">C / Embedded</span>
-          <span class="pill">BLE</span>
-          <span class="pill">STM32</span>
+          <span class="pill">RPI Pico</span>
+          <span class="pill">Bluetooth</span>
+          <span class="pill">MIT App Inventor</span>
         </div>
       </article>
 
-      <article class="card software" aria-labelledby="proj-software-2">
-        <h2 id="proj-software-2">Full-Stack — Campus Marketplace</h2>
-        <p>Developed a student-to-student marketplace with secure auth, listings, and payments. Added server-side rendering for faster page loads and better SEO.</p>
+      <article class="card software" aria-labelledby="proj-software-3">
+        <div class="image-wrapper">
+          <img class="project-thumb" src="images/ambagan.jpg" alt="Ambagan App: Shared Expense Tracker" loading="lazy" style="object-position: center 52%;" data-images="images/ambagan.jpg, images/ambagan1.jpg, images/ambagan2.jpg, images/ambagan3.jpg" onclick="openModal(this)">
+          <span class="expand-icon">⤢</span>
+        </div>
+        <h2 id="proj-software-3">Ambagan App: Shared Expense Tracker</h2>
+        <p class="focus-label">Software Focus</p>
+        <p>A mobile application that facilitates expense splitting for friends, households, and etc. Streamlined group accounting and settlement tracking.</p>
         <div class="pill-row">
-          <span class="pill">Next.js</span>
-          <span class="pill">PostgreSQL</span>
-          <span class="pill">Stripe</span>
+          <span class="pill">React Native</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill">UI Design</span>
         </div>
       </article>
 
-      <article class="card hardware" aria-labelledby="proj-hardware-2">
-        <h2 id="proj-hardware-2">Robotics — Line Follower</h2>
-        <p>Tuned PID control for a competition line-follower robot; improved lap time by 18% through sensor fusion and adaptive gain scheduling.</p>
+      <article class="card hardware" aria-labelledby="proj-hardware-4">
+        <div class="image-wrapper">
+          <img class="project-thumb" src="images/lockey.jpg" alt="LocKey: Arduino RFID Lock System" loading="lazy" style="object-position: center 32%;" data-images="images/lockey.jpg, images/lockey1.jpg" onclick="openModal(this)">
+          <span class="expand-icon">⤢</span>
+        </div>
+        <h2 id="proj-hardware-4">LocKey: Arduino RFID Lock System</h2>
+        <p class="focus-label">Hardware Focus</p>
+        <p>A simple RFID entry system for authenticating users and enhanced security.</p>
         <div class="pill-row">
-          <span class="pill">PID</span>
-          <span class="pill">Sensor Fusion</span>
           <span class="pill">Arduino</span>
+          <span class="pill">C++</span>
+          <span class="pill">RFID</span>
+          <span class="pill">Solenoid Lock</span>
         </div>
       </article>
 
-      <article class="card software" aria-labelledby="about">
-        <h2 id="about">About</h2>
-        <p>Curious about systems that connect hardware and software. I enjoy building clean interfaces, dependable firmware, and tooling that makes teams faster.</p>
-        <p class="highlight">Currently seeking internships and project collaborations.</p>
+      <article class="card software" aria-labelledby="proj-software-4">
+        <div class="image-wrapper">
+          <img class="project-thumb" src="images/game.jpg" alt="Rock Paper Scissors Game" loading="lazy" style="object-position: center 30%;" data-images="images/game.jpg, images/game1.jpg, images/game2.jpg" onclick="openModal(this)">
+          <span class="expand-icon">⤢</span>
+        </div>
+        <h2 id="proj-software-4">Rock Paper Scissors Game</h2>
+        <p class="focus-label">Software Focus</p>
+        <p>A classic Rock Paper Scissors game built with Python. Features a clean GUI interface for interactive gameplay against the computer.</p>
+        <div class="pill-row">
+          <span class="pill">Python</span>
+          <span class="pill">Tkinter</span>
+          <span class="pill">GUI</span>
+        </div>
       </article>
 
-      <article class="card" aria-labelledby="contact">
-        <h2 id="contact">Contact</h2>
-        <p>Email: <a href="mailto:ysha@example.com">ysha@example.com</a></p>
-        <p>GitHub: <a href="https://github.com/yshawela" target="_blank" rel="noreferrer">github.com/yshawela</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/" target="_blank" rel="noreferrer">linkedin.com/in/your-profile</a></p>
+      <article class="card hardware" aria-labelledby="proj-hardware-3">
+        <div class="image-wrapper">
+          <img class="project-thumb" src="images/solar.jpg" alt="Solar-Powered Pedestrian Lane Light System" loading="lazy" data-images="images/solar.jpg, images/solar1.jpg" onclick="openModal(this)">
+          <span class="expand-icon">⤢</span>
+        </div>
+        <h2 id="proj-hardware-3">Solar-Powered Pedestrian Lane Light System</h2>
+        <p class="focus-label">Hardware Focus</p>
+        <p>A solar LED light system for mitigating nighttime road hazards and enhancing crosswalk visibility. Designed for durability and autonomous operation.</p>
+        <div class="pill-row">
+          <span class="pill">Solar Panel</span>
+          <span class="pill">LED</span>
+          <span class="pill">Circuit</span>
+        </div>
       </article>
+
     </section>
   </main>
+
+  <footer class="footer-bar" aria-label="Contact and links">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <div class="footer-name">Ysha Wakefield</div>
+        <div class="footer-role">Computer Engineering Student</div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-links">
+          <a href="mailto:ysha.wela.w@gmail.com" aria-label="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </a>
+          <a href="https://github.com/yshawela" target="_blank" rel="noreferrer" aria-label="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+            </svg>
+          </a>
+          <a href="https://linkedin.com/in/yshawakefield" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+        </div>
+        <div class="footer-note">Built by Ysha</div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="connect-blob" onclick="scrollToFooterAndGlow()" aria-label="Scroll to contact information">
+    Contact Me
+  </button>
+
+  <div id="image-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Project image viewer" onclick="handleModalClick(event)">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close" onclick="closeModal(event)">×</button>
+      <button class="modal-nav prev" aria-label="Previous image" onclick="prevImage(event)">←</button>
+      <img id="modal-image" src="" alt="Expanded project image">
+      <button class="modal-nav next" aria-label="Next image" onclick="nextImage(event)">→</button>
+      <div id="modal-counter" class="modal-counter" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <script>
+    // Respect user's motion preferences
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion) {
+      const heroImage = document.querySelector('.hero-image');
+      const heroText = document.querySelector('.hero-text');
+      const cards = document.querySelectorAll('.grid .card');
+      const cover = document.querySelector('.cover');
+
+      let animationFrameId = null;
+
+      function updateHeroAnimation() {
+        if (!heroImage || !heroText) return;
+
+        // Get the cover section's bounding rect
+        const coverRect = cover.getBoundingClientRect();
+        const coverHeight = cover.offsetHeight;
+
+        // Calculate how far we've scrolled into the cover section
+        // Negative when above, 0 at top, positive as we scroll down
+        const scrollProgress = Math.max(0, -coverRect.top);
+
+        // Calculate the scroll progress as a percentage (0 to 1)
+        // Complete the effect within ~40-50% of viewport scroll (use viewport height as reference)
+        const maxScroll = window.innerHeight * 0.5;
+        const progress = Math.min(1, scrollProgress / maxScroll);
+
+        // Apply transforms to hero elements
+        const translateY = progress * -30; // Move up to -30px
+        const opacity = 1 - progress; // Fade from 1 to 0
+
+        // Use transform and opacity for best performance
+        heroImage.style.transform = `translateY(${translateY}px)`;
+        heroImage.style.opacity = opacity;
+
+        heroText.style.transform = `translateY(${translateY}px)`;
+        heroText.style.opacity = opacity;
+
+        // Apply fade-in, blur, and scale to cards with staggered effect
+        cards.forEach((card, index) => {
+          // Stagger based on row: calculate approximate row position
+          // Assuming ~3 columns, each card appears slightly after the previous
+          const staggerDelay = (index * 0.08) * maxScroll; // Stagger offset
+          const adjustedProgress = Math.max(0, scrollProgress - staggerDelay) / maxScroll;
+          const cardProgress = Math.min(1, adjustedProgress);
+
+          const cardOpacity = cardProgress; // Fade in from 0 to 1
+          const cardScale = 0.90 + cardProgress * 0.10; // Scale from 0.90 to 1.00
+          const cardBlur = (1 - cardProgress) * 6; // Blur from 6px to 0px
+
+          card.style.opacity = cardOpacity;
+          card.style.transform = `scale(${cardScale})`;
+          card.style.filter = `blur(${cardBlur}px)`;
+        });
+      }
+
+      function onScroll() {
+        // Cancel any pending animation frame
+        if (animationFrameId !== null) {
+          cancelAnimationFrame(animationFrameId);
+        }
+        // Schedule the update on the next animation frame for smooth performance
+        animationFrameId = requestAnimationFrame(updateHeroAnimation);
+      }
+
+      // Add scroll listener with passive flag for better performance
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // Initial call to set proper state on page load
+      updateHeroAnimation();
+    }
+
+    const modalOverlay = document.getElementById('image-modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalCounter = document.getElementById('modal-counter');
+    let modalImages = [];
+    let modalIndex = 0;
+
+    function setModalImage(index) {
+      if (!modalOverlay || !modalImage || modalImages.length === 0) return;
+      modalIndex = (index + modalImages.length) % modalImages.length;
+      modalImage.src = modalImages[modalIndex];
+      if (modalCounter) {
+        modalCounter.textContent = `${modalIndex + 1} / ${modalImages.length}`;
+        modalCounter.style.display = modalImages.length > 1 ? 'block' : 'none';
+      }
+      const prevBtn = modalOverlay.querySelector('.modal-nav.prev');
+      const nextBtn = modalOverlay.querySelector('.modal-nav.next');
+      const showNav = modalImages.length > 1;
+      if (prevBtn) prevBtn.style.display = showNav ? 'flex' : 'none';
+      if (nextBtn) nextBtn.style.display = showNav ? 'flex' : 'none';
+    }
+
+    function openModal(el) {
+      if (!modalOverlay || !modalImage) return;
+      const list = (el?.dataset?.images || '').split(',').map(s => s.trim()).filter(Boolean);
+      modalImages = list.length ? list : [el?.src].filter(Boolean);
+      modalIndex = 0;
+      setModalImage(modalIndex);
+      modalOverlay.classList.add('active');
+      document.body.classList.add('modal-open');
+      modalOverlay.focus({ preventScroll: true });
+    }
+
+    function closeModal(event) {
+      if (event) event.stopPropagation();
+      if (!modalOverlay) return;
+      modalOverlay.classList.remove('active');
+      document.body.classList.remove('modal-open');
+      modalImage.src = '';
+      modalImages = [];
+      modalIndex = 0;
+    }
+
+    function handleModalClick(event) {
+      // Close when clicking the backdrop (but not when clicking the image area)
+      if (event.target === modalOverlay) {
+        closeModal(event);
+      }
+    }
+
+    function prevImage(event) {
+      if (event) event.stopPropagation();
+      if (modalImages.length > 1) setModalImage(modalIndex - 1);
+    }
+
+    function nextImage(event) {
+      if (event) event.stopPropagation();
+      if (modalImages.length > 1) setModalImage(modalIndex + 1);
+    }
+
+    // Close on Escape key, and navigate with arrows
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalOverlay?.classList.contains('active')) {
+        closeModal();
+      }
+      if (modalOverlay?.classList.contains('active')) {
+        if (e.key === 'ArrowLeft') prevImage();
+        if (e.key === 'ArrowRight') nextImage();
+      }
+    });
+
+    // Scroll to footer and make icons glow
+    function scrollToFooterAndGlow() {
+      const footer = document.querySelector('.footer-bar');
+      if (footer) {
+        footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // Add glow effect to all footer link icons after scroll completes
+        setTimeout(() => {
+          const footerLinks = document.querySelectorAll('.footer-links a');
+          footerLinks.forEach(link => {
+            link.classList.add('glow');
+          });
+          
+          // Remove glow class after animation completes (1.5s * 3 iterations = 4.5s)
+          setTimeout(() => {
+            footerLinks.forEach(link => {
+              link.classList.remove('glow');
+            });
+          }, 4500);
+        }, 800); // Wait for scroll to mostly complete
+      }
+    }
+
+    // Hide Connect blob when footer is visible
+    const connectBlob = document.querySelector('.connect-blob');
+    const footer = document.querySelector('.footer-bar');
+    
+    if (connectBlob && footer) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            connectBlob.classList.add('hidden');
+          } else {
+            connectBlob.classList.remove('hidden');
+          }
+        });
+      }, {
+        threshold: 0.1 // Trigger when 10% of footer is visible
+      });
+      
+      observer.observe(footer);
+    }
+
+    // Swipe gesture support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const swipeThreshold = 50; // Minimum swipe distance in pixels
+
+    function handleSwipe() {
+      const swipeDistance = touchEndX - touchStartX;
+      
+      // Swipe left (next image)
+      if (swipeDistance < -swipeThreshold && modalImages.length > 1) {
+        nextImage();
+      }
+      
+      // Swipe right (previous image)
+      if (swipeDistance > swipeThreshold && modalImages.length > 1) {
+        prevImage();
+      }
+    }
+
+    if (modalOverlay) {
+      modalOverlay.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      modalOverlay.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, { passive: true });
+    }
+  </script>
 </body>
 </html>
