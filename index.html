@@ -218,9 +218,9 @@
     .skill-pill {
       display: inline-flex;
       align-items: center;
-      padding: 8px 12px;
+      padding: 6px 10px;
       border-radius: 999px;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 600;
       color: #2A2A2A;
       box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
@@ -710,7 +710,46 @@
       }
     }
 
-    /* ========== Floating Connect Button ========== */
+    /* ========== Floating Buttons ========== */
+
+    .view-projects-blob {
+      position: fixed;
+      bottom: 32px;
+      right: 118px;
+      width: 70px;
+      height: 70px;
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(3px);
+      border: 1px solid rgba(255, 180, 162, 0.3);
+      cursor: pointer;
+      z-index: 998;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(255, 140, 100, 0.35),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+      animation: blob-morph 8s ease-in-out infinite, float-gentle 3s ease-in-out infinite;
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      color: #2A2A2A;
+      letter-spacing: 0.02em;
+    }
+
+    .view-projects-blob:hover {
+      transform: scale(1.08);
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 14px 38px rgba(255, 140, 100, 0.45),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      border-color: rgba(255, 180, 162, 0.5);
+    }
+
+    .view-projects-blob:active {
+      transform: scale(0.95);
+    }
 
     .connect-blob {
       position: fixed;
@@ -757,12 +796,26 @@
       transform: translateY(20px);
     }
 
+    .view-projects-blob.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+    }
+
     @keyframes float-gentle {
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-8px); }
     }
 
     @media (max-width: 768px) {
+      .view-projects-blob {
+        bottom: 20px;
+        right: 88px;
+        width: 60px;
+        height: 60px;
+        font-size: 11px;
+      }
+
       .connect-blob {
         bottom: 20px;
         right: 20px;
@@ -828,14 +881,12 @@
         <span class="satellite sat-3"></span>
       </div>
       <div class="hero-text">
-        <div class="status-badge"><span class="status-dot" aria-hidden="true"></span>Open to Internships</div>
-        <h1>Hi! I'm Ysha</h1>
-        <p class="subtitle">4th Year <span class="marker">Computer Engineering Student</span></p>
-        <p class="hero-subhead">Curious about embedded systems, system design, and engineering projects that bridge hardware and software.</p>
+        <h1>Ysha Wela Wakefield</h1>
+        <p class="hero-subhead">I build practical systems combining web development, embedded systems, RFID technology, and real-world engineering workflows.<br>Experienced in Firebase-based systems, automation projects, technical troubleshooting, and engineering support through internship exposure in the solar energy industry.</p>
         <div class="skill-strip" aria-label="Key skills">
-          <span class="skill-pill teal">Arduino</span>
-          <span class="skill-pill orange">IoT Systems</span>
-          <span class="skill-pill blue">Prototyping</span>
+          <span class="skill-pill teal">IoT & Automation</span>
+          <span class="skill-pill orange">Embedded Systems</span>
+          <span class="skill-pill blue">Software Developer</span>
           <span class="skill-pill purple">Frontend Design</span>
         </div>
       </div>
@@ -844,22 +895,25 @@
 
   <main>
     <section class="grid" aria-label="Projects and info">
-      <article class="card hardware featured stretched" aria-labelledby="proj-hardware-5">
+      <article class="card software featured stretched" aria-labelledby="proj-software-1">
         <div class="featured-layout">
           <div class="featured-image image-wrapper" aria-hidden="true">
-            <img src="images/feedback.jpg" alt="Feedback-controlled water vending machine" loading="lazy" data-images="images/feedback.jpg, images/feedback1.jpg, images/feedback2.jpg" onclick="openModal(this)">
+            <img src="images/Classr.png" alt="ClassR smart classroom management system" loading="lazy" data-images="images/Classr.png" onclick="openModal(this)">
             <span class="expand-icon">⤢</span>
           </div>
           <div class="featured-body">
-            <h2 id="proj-hardware-5">Feedback-Controlled Water Vending Machine</h2>
-            <p class="focus-label featured-label">⭐ Featured · Hardware Focus</p>
-            <p>A smart dispenser that automates water flow and auto-clears unclaimed cups. Optimized user experience and reduced waste.</p>
+            <h2 id="proj-software-1">ClassR - Smart Classroom Management System</h2>
+            <p class="focus-label featured-label">⭐ Featured · Full-Stack</p>
+            <p>A web-based classroom management platform integrating RFID attendance tracking, gamified participation, and AI-assisted academic tools to improve classroom engagement and automate administrative tasks.</p>
             <div class="pill-row">
-              <span class="pill">Arduino</span>
-              <span class="pill">Motion Sensor</span>
-              <span class="pill">Servo Motor</span>
-              <span class="pill">Water Pump</span>
-              <span class="pill">Coin Slot</span>
+              <span class="pill">Raspberry Pi</span>
+              <span class="pill">React</span>
+              <span class="pill">Firebase</span>
+              <span class="pill">Firestore</span>
+              <span class="pill">RFID</span>
+              <span class="pill">JavaScript</span>
+              <span class="pill">AI Integration</span>
+              <span class="pill">Camera Integration</span>
             </div>
           </div>
         </div>
@@ -867,16 +921,18 @@
 
       <article class="card hardware" aria-labelledby="proj-hardware-5">
         <div class="image-wrapper">
-          <img class="project-thumb" src="images/car.jpg" alt="Bluetooth Controlled RC Car" loading="lazy" data-images="images/car.jpg, images/car1.jpg, images/car2.jpg" onclick="openModal(this)">
+          <img class="project-thumb" src="images/feedback.jpg" alt="Feedback-controlled water vending machine" loading="lazy" data-images="images/feedback.jpg, images/feedback1.jpg, images/feedback2.jpg" onclick="openModal(this)">
           <span class="expand-icon">⤢</span>
         </div>
-        <h2 id="proj-hardware-5">Bluetooth Controlled RC Car</h2>
+        <h2 id="proj-hardware-5">Feedback-Controlled Water Vending Machine</h2>
         <p class="focus-label">Hardware Focus</p>
-        <p>An RC car controlled via Bluetooth using RPI Pico microcontroller. Mobile app built with MIT App Inventor for seamless wireless communication and control.</p>
+        <p>A smart dispenser that automates water flow and auto-clears unclaimed cups. Optimized user experience and reduced waste.</p>
         <div class="pill-row">
-          <span class="pill">RPI Pico</span>
-          <span class="pill">Bluetooth</span>
-          <span class="pill">MIT App Inventor</span>
+          <span class="pill">Arduino</span>
+          <span class="pill">Motion Sensor</span>
+          <span class="pill">Servo Motor</span>
+          <span class="pill">Water Pump</span>
+          <span class="pill">Coin Slot</span>
         </div>
       </article>
 
@@ -892,6 +948,24 @@
           <span class="pill">React Native</span>
           <span class="pill">JavaScript</span>
           <span class="pill">UI Design</span>
+        </div>
+      </article>
+      
+      <article class="card software" aria-labelledby="proj-software-5">
+        <div class="image-wrapper">
+          <img class="project-thumb" src="images/kanbly.png" alt="Kanbly cloud-based task management system" loading="lazy" data-images="images/kanbly.png, images/kanbly1.png, images/kanbly2.png, images/kanbly3.png" onclick="openModal(this)">
+          <span class="expand-icon">⤢</span>
+        </div>
+        <h2 id="proj-software-5">Kanbly - Task Management System</h2>
+        <p class="focus-label">Software Focus</p>
+        <p>A cloud-based Kanban task management system built on AWS Amazon, supporting task workflows, file attachments, and a serverless backend architecture.</p>
+        <div class="pill-row">
+          <span class="pill">EC2</span>
+          <span class="pill">HTML/CSS</span>
+          <span class="pill">Lambda (Python)</span>
+          <span class="pill">API Gateway</span>
+          <span class="pill">RDS (MySQL)</span>
+          <span class="pill">S3</span>
         </div>
       </article>
 
@@ -911,21 +985,18 @@
         </div>
       </article>
 
-      <article class="card software" aria-labelledby="proj-software-5">
+      <article class="card hardware" aria-labelledby="proj-hardware-5">
         <div class="image-wrapper">
-          <img class="project-thumb" src="images/kanbly.png" alt="Kanbly cloud-based task management system" loading="lazy" data-images="images/kanbly.png, images/kanbly1.png, images/kanbly2.png, images/kanbly3.png" onclick="openModal(this)">
+          <img class="project-thumb" src="images/car.jpg" alt="Bluetooth Controlled RC Car" loading="lazy" data-images="images/car.jpg, images/car1.jpg, images/car2.jpg" onclick="openModal(this)">
           <span class="expand-icon">⤢</span>
         </div>
-        <h2 id="proj-software-5">Kanbly - Task Management System</h2>
-        <p class="focus-label">Software Focus</p>
-        <p>A cloud-based Kanban task management system built on AWS Amazon, supporting task workflows, file attachments, and a serverless backend architecture.</p>
+        <h2 id="proj-hardware-5">Bluetooth Controlled RC Car</h2>
+        <p class="focus-label">Hardware Focus</p>
+        <p>An RC car controlled via Bluetooth using RPI Pico microcontroller. Mobile app built with MIT App Inventor for seamless wireless communication and control.</p>
         <div class="pill-row">
-          <span class="pill">EC2</span>
-          <span class="pill">HTML/CSS</span>
-          <span class="pill">Lambda (Python)</span>
-          <span class="pill">API Gateway</span>
-          <span class="pill">RDS (MySQL)</span>
-          <span class="pill">S3</span>
+          <span class="pill">RPI Pico</span>
+          <span class="pill">Bluetooth</span>
+          <span class="pill">MIT App Inventor</span>
         </div>
       </article>
 
@@ -965,8 +1036,7 @@
   <footer class="footer-bar" aria-label="Contact and links">
     <div class="footer-inner">
       <div class="footer-left">
-        <div class="footer-name">Ysha Wakefield</div>
-        <div class="footer-role">Computer Engineering Student</div>
+        <div class="footer-name">Ysha Wela Wakefield</div>
       </div>
       <div class="footer-right">
         <div class="footer-links">
@@ -986,10 +1056,13 @@
             </svg>
           </a>
         </div>
-        <div class="footer-note">Built by Ysha</div>
       </div>
     </div>
   </footer>
+
+  <button class="view-projects-blob" onclick="scrollToProjects()" aria-label="Scroll to projects">
+    View<br>Projects
+  </button>
 
   <button class="connect-blob" onclick="scrollToFooterAndGlow()" aria-label="Scroll to contact information">
     Contact Me
@@ -1148,6 +1221,14 @@
       }
     });
 
+    // Scroll to projects
+    function scrollToProjects() {
+      const projectsGrid = document.querySelector('.grid');
+      if (projectsGrid) {
+        projectsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
     // Scroll to footer and make icons glow
     function scrollToFooterAndGlow() {
       const footer = document.querySelector('.footer-bar');
@@ -1173,7 +1254,9 @@
 
     // Hide Connect blob when footer is visible
     const connectBlob = document.querySelector('.connect-blob');
+    const viewProjectsBlob = document.querySelector('.view-projects-blob');
     const footer = document.querySelector('.footer-bar');
+    const projectsGrid = document.querySelector('.grid');
     
     if (connectBlob && footer) {
       const observer = new IntersectionObserver((entries) => {
@@ -1189,6 +1272,23 @@
       });
       
       observer.observe(footer);
+    }
+
+    // Hide View Projects blob when projects grid is visible
+    if (viewProjectsBlob && projectsGrid) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            viewProjectsBlob.classList.add('hidden');
+          } else {
+            viewProjectsBlob.classList.remove('hidden');
+          }
+        });
+      }, {
+        threshold: 0.1 // Trigger when 10% of projects grid is visible
+      });
+      
+      observer.observe(projectsGrid);
     }
 
     // Swipe gesture support for mobile
